@@ -12,6 +12,9 @@ export default function App() {
   
   const [obstaclesLeft, setObstaclesLeft] = useState(screenWidth)
   const [obstaclesLeftTwo, setObstaclesLeftTwo] = useState(screenWidth + screenWidth/2 + 50)
+  const [obstaclesNegHeight, setObstaclesNegHeight] = useState(0)
+  const [obstaclesNegHeightTwo, setObstaclesNegHeightTwo] = useState(0)
+  
   const obstacleWidth = 60
   const obstacleHeight = 360
   const gap = 170
@@ -50,6 +53,7 @@ useEffect(() => {
     }
   } else {
     setObstaclesLeft(screenWidth)
+    setObstaclesNegHeight(- Math.random() *100)
   }
 
 }, [obstaclesLeft])   
@@ -66,6 +70,7 @@ useEffect(() => {
     }
   } else {
     setObstaclesLeftTwo(screenWidth)
+    setObstaclesNegHeightTwo(- Math.random() *100)
   }
 
 }, [obstaclesLeftTwo])
@@ -81,18 +86,20 @@ useEffect(() => {
      />
 
     <Obstacles
-      color = {'orange'}
+      color = {'#2E8B57'}
       obstaclesLeft = {obstaclesLeft}
       obstacleWidth = {obstacleWidth}
       obstacleHeight = {obstacleHeight}
+      randomBottom = {obstaclesNegHeight}
       gap = {gap}
     />
 
     <Obstacles
-      color = {'blue'}
+      color = {'#228B22'}
       obstaclesLeft = {obstaclesLeftTwo}
       obstacleWidth = {obstacleWidth}
       obstacleHeight = {obstacleHeight}
+      randomBottom = {obstaclesNegHeightTwo}
       gap = {gap}
     />
 
