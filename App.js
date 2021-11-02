@@ -15,7 +15,7 @@ export default function App() {
   const [obstaclesNegHeight, setObstaclesNegHeight] = useState(0)
   const [obstaclesNegHeightTwo, setObstaclesNegHeightTwo] = useState(0)
   
-  const obstacleWidth = 60
+  const obstacleWidth = 62
   const obstacleHeight = 360
   const gap = 170
 
