@@ -11,7 +11,7 @@ const Bird = ({birdBottom, birdLeft}) => {
     <View style= {{
 
             position: 'absolute',
-            backgroundColor: 'teal',
+            backgroundColor: 'indigo',
             width: birdWidth,
             height: birdHeight,
             borderRadius: 50,
