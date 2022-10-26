@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, Dimensions, TouchableWithoutFeedback } from 'react-native';
 import Bird from './components/Bird';
-import Obstacles from './components/obstacles';
+import Obstacles from './components/Obstacles';
 
 
 export default function App() {
