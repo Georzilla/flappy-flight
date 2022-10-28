@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Text, View, Dimensions, TouchableWithoutFeedback } from 'react-native';
+import { ImageBackground, StyleSheet, Text, View, Dimensions, TouchableWithoutFeedback, Alert } from 'react-native';
 import Bird from './components/Bird';
 import Obstacles from './components/Obstacles';
+import RNRestart from 'react-native-restart';
 
 
 export default function App() {
@@ -28,6 +29,7 @@ export default function App() {
  
   const [isGameOver, setIsGameOver] = useState(false)
 
+  const bgSea = { uri: "https://i.imgur.com/VJvWyuH.jpg" };
 
 /// start falling
 
@@ -41,10 +43,9 @@ useEffect(() => {
       clearInterval(gameTimerId)
     }
 
-
   } 
 }, [birdBottom])
-console.log(birdBottom)
+
 
 // jump
 const jump = () => {
@@ -120,6 +121,9 @@ const gameOver = () => {
   setIsGameOver(true)
 }
 
+const newGame = () => {
+  RNRestart.Restart()
+}
 
 
   return (
@@ -127,7 +131,19 @@ const gameOver = () => {
 
 <TouchableWithoutFeedback onPress={jump} >
     <View style={styles.container}>
-      {isGameOver && <Text> Your Score is {score}</Text> }
+      {isGameOver && Alert.alert(`GAME OVER 	  |    Your Score is  ${score}`, "New game?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => newGame() }
+      ] && <Text> Your Score is {score}</Text>
+      )
+      }
+
+<ImageBackground source={bgSea} resizeMode="cover" style={styles.image}> 
      <Bird
         birdBottom={birdBottom}
         birdLeft={birdLeft}
@@ -151,7 +167,7 @@ const gameOver = () => {
       randomBottom = {obstaclesNegHeightTwo}
       gap = {gap}
     />
-
+</ImageBackground>
     </View>
   </TouchableWithoutFeedback>
   );
@@ -160,8 +176,13 @@ const gameOver = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'hidden',
+  },
+  image: {
+    flex: 1,
+    justifyContent: "center",
+    width: '100%'
   },
 });
